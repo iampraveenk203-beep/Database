@@ -20,22 +20,30 @@ Basic SQL syntax:
     DELETE: Remove data.
                     DELETE FROM users where id = 1;
 
-It is highly stable, opensource relational database management system (RDBMS).
-Advanced Data Types:
-    -> Supports relational data, JSON/JSONB for NoSQL workloads, geometric data and cutom types.
+POSTGRESQL:
+    It is highly stable, opensource relational database management system (RDBMS).
+    Advanced Data Types:
+        -> Supports relational data, JSON/JSONB for NoSQL workloads, geometric data and cutom types.
 
-Basic Queries:
-    select * FROM employees;
-    select * FROM products WHERE price>50;
-    select * FROM products ORDER BY price DESC LIMIT 5;
+FILTERING (LIKE, IN, BETWEEN):
+    LIKE (pattern matching): Find rows that match a specifictext pattern using wildcard percentages(%).
+        --> Write a query to get names start with 'A'.
+            SELECT * FROM users WHERE name LIKE 'A%';
+    IN (MULTIPLE VALUES): Match values against a predefined list.
+        --> Write a query to get users living in specific cities.
+            SELECT * FROM users WHERE city IN ('UK', 'NY', 'PARIS');
+    BETWEEN (RANGE MATCHING): Filter values within a specificrange (inclusive).
+        --> Write a query to get users aged between 20 to 30.
+            SELECT * FROM users WHERE age BETWEEN 20 AND 30;
 
-    insert into users (username, email) VALUES ('alice', 'alice@example.com')
-    update users SET status='active' where role='guest'
+SORTING RESULTS (ORDER BY):
+    --> by default databases return rows in no guaranteed order, You can sort them using ORDER_BY in ascending (ASC, default) OR DESC order.
+    --> Write a query to get users from oldest to youngest.
+        SELECT * FROM users ORDER BY age DESC;
 
-    select customer_id, count(*) from orders GROUP BY customer_id;
-
-    HAVING avg(salary) >60000
-    select * from products where price > (selct avg(price) from products);
-
-    select c.name, sum(o.amount) from customers c LEFT JOIN orders o ON c.id=o.customer_id GROUP_BY c.name;
+AGGREGATING DATA (COUNT, SUM, AVG, GROUP BY):
+    Aggregate functions calculate statistics across multiple rows. you often pair them with GROUP BY to group rows that share common values.
+    --> Write a query to count how many users live in each city ?
+        SELECT city COUNT(id) AS total_users FROM users GROUP BY city;
+    
     
