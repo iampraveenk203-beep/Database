@@ -45,5 +45,33 @@ AGGREGATING DATA (COUNT, SUM, AVG, GROUP BY):
     Aggregate functions calculate statistics across multiple rows. you often pair them with GROUP BY to group rows that share common values.
     --> Write a query to count how many users live in each city ?
         SELECT city COUNT(id) AS total_users FROM users GROUP BY city;
-    
-    
+
+SQL JOINS and TABLE RELATIONSHIPS:
+    PRE-REQUISITE: KEYS "Before linking tables, you need columns that act as connective tissue"
+        1. Primary Key: A column that uniquely identifies each row in its own table (id in users table).
+        2. Foreign Key: A column in a table that references the primary key of another table. (user_id inside orders table).
+
+    SQL JOINS:
+        Available tables in office database:
+            SELECT * FROM employees;
+            SELECT * FROM department;
+            SELECT * FROM manager;
+            SELECT * FROM projects;
+        INNER JOIN (The Default): Fetches only matching records in both tables.
+            --> Fetch the employee name and department name they belong to from employee and department tables.
+            SELECT e.emp_name, d.dept_name FROM employees e INNER JOIN department d ON e.dept_id = d.dept_id;
+        LEFT JOIN:
+            --> left join = inner join + any additional records in the left table.(Note: Values will be null for the values not present in right table)
+            Fetch all the employees name and their department name they belong.
+            SELECT e.emp_name, d.dept_name from employee e LEFT JOIN department d on e.dept_id = d.dept_id;
+        RIGHT JOIN:
+            --> right join = inner join + any additional records from right table. (Note: values will be null for the values not present in left table)
+            Fetch employee name and all the department names they belong.
+            SELECT e.emp_name, d.dept_name FROM employee e RIGHT JOIN department d on e.dept_id = d.dept_id
+        --> Fetch details of ALL employees, their managers, their deptand the projects they work on.
+            SELECT e.emp_name, d.dept_name, m.manager_name, p.project_name 
+            FROM employee e 
+            LEFT JOIN department d ON e.dept_id = d.dept_id
+            INNER JOIN manager m ON m.manager_id = e.manager_id
+            LEFT JOIN projects p ON p.team_member_id = e.emp_id 
+                                        
