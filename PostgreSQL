@@ -1,0 +1,3 @@
+It is highly stable, opensource relational database management system (RDBMS).
+Advanced Data Types:
+    -> Supports relational data, JSON/JSONB for NoSQL workloads, geometric data and cutom types.
