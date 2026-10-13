@@ -1,3 +1,19 @@
 It is highly stable, opensource relational database management system (RDBMS).
 Advanced Data Types:
     -> Supports relational data, JSON/JSONB for NoSQL workloads, geometric data and cutom types.
+
+Basic Queries:
+    select * FROM employees;
+    select * FROM products WHERE price>50;
+    select * FROM products ORDER BY price DESC LIMIT 5;
+
+    insert into users (username, email) VALUES ('alice', 'alice@example.com')
+    update users SET status='active' where role='guest'
+
+    select customer_id, count(*) from orders GROUP BY customer_id;
+
+    HAVING avg(salary) >60000
+    select * from products where price > (selct avg(price) from products);
+
+    select c.name, sum(o.amount) from customers c LEFT JOIN orders o ON c.id=o.customer_id GROUP_BY c.name;
+    
