@@ -1,3 +1,25 @@
+Relational database (SQL):
+    --> Structured into tables with strict rows and columns.
+        Uses foreign keys to link tables together.
+        Best used for transactions, complex queries.
+        Example: PostgresSQL, MYSQL, SQLite
+Non-Relational Database (NoSQL):
+    --> Flexible structures like JSON, documents, key-value pairs.
+        Items are nested inside a single document or kept independent
+        MongoDB, Redis, Cassandra
+CRUD operations: Create, Read, Update and Delete.
+Basic SQL syntax:
+    SELECT: READ data.
+            Example: 
+                    SELECT * FROM users;
+                    SELECT name, email FROM users WHERE age >= 18;
+    INSERT INTO: Create data.
+                    INSERT INTO users (name, email, age) VALUES ('Alice', 'abcd@gmail.com', 25)
+    UPDATE: Modify data.
+                    UPDATE users SET email = 'new@gmail.com' WHERE id = 1;
+    DELETE: Remove data.
+                    DELETE FROM users where id = 1;
+
 It is highly stable, opensource relational database management system (RDBMS).
 Advanced Data Types:
     -> Supports relational data, JSON/JSONB for NoSQL workloads, geometric data and cutom types.
