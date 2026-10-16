@@ -85,3 +85,27 @@ What is database normalization?
         Without Normalization, databases often store duplicate information across rows, This leads to data anomalies.
         Normalization progresses through steps called normal forms(NFs), where each level builds on previous standard.
         1NF --> 2NF --> 3NF --> Higher (BCNF, 4NF, 5NF, 6NF)
+
+How do you scale databse (postgreSQL) ?
+        1. Vertical scaling:
+            Give existing db more resources and optimize how it use them.
+            Upgrade the H/W
+            Tune the cache size
+            Indexing
+        2. Connection management (Pooling) using PGcat or PGbouncer.
+        3. Horizontal Scaling (Scale out-Reads):
+            Scale read traffic by introducing replicas, so that Insert, Update and Delete should be handled by primary db.
+            Load Balancing Reads: Route all Read/SELECT traffic distributed across replicas.
+        4. Horizontal Scaling (Scale out- Writes and Sharding):
+            Application level sharding: 
+                    Design application logic to route write traffic to different databases.
+                    Example: users A-M go to DB1 and users N-Z go to DB2.
+
+When you scale out stateless application servers/worker engines, How DB crud operations handled ?
+        Yes it provides the below challenges when you scale worker engines:
+                Connection pool exahustation: Fix (Use centralized proxy PGcat/PGBouncer (Instead of workers directly connecting to DB These proxy helps to multiplexes the connections to small and efficient pool of persistent DB connections)
+                Handling write and read bottlenecks: 
+                            Fix(Read heavy workloads, Introduce MessageQ between engine and databse and Sharding and partitioning)
+                Concurrency and Race Condition:
+                            Fix(use optimistic locking, Idenmpotency key like UUID(Universally Unique identifier)
+                Rate limiting: Fix(Use RedisQ or Celery at the application logic side.)
