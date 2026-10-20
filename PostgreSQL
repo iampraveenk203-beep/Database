@@ -109,3 +109,15 @@ When you scale out stateless application servers/worker engines, How DB crud ope
                 Concurrency and Race Condition:
                             Fix(use optimistic locking, Idenmpotency key like UUID(Universally Unique identifier)
                 Rate limiting: Fix(Use RedisQ or Celery at the application logic side.)
+
+What is psycopg/psycopg2 ?
+        It is a database driver or adapter used in python to interact with postgresql.
+
+What is SQLAlchemy ?
+         SQL Tool-Kit and Object Releational Mapper (ORM)
+         It is a translator or brain and this can be used with multiple data bases (Mysql, Oracle, Postgresql).
+         We can write SQL queries using python expressions and returns the pythons clean objects.
+         SQL query : SELECT * FROM users WHERE age > 21;
+         -----> Can be written with SQLAlchemy
+         SQLAlchemy : (select(users).where(users.age > 21))
+
